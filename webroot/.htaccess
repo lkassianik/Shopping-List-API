@@ -1,2 +1,2 @@
 RewriteEngine On # Turn on the rewriting engine
-RewriteRule ^(.*)$ /index.php [NC,L,QSA]
+RewriteRule ^(.*)$          /index.php?__path__=$1  [B,L,QSA]

@@ -14,7 +14,7 @@
 
   switch($api_method)
   {
-    case 'get_items':
+    case 'get-items':
       $item_id = idx($_REQUEST, 'item_id');
       if(!empty($item_id)) {
         get_items($item_id);
