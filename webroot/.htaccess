@@ -1,3 +1,2 @@
 RewriteEngine On # Turn on the rewriting engine
-RewriteRule ^items/?$ sample_page.php [NC,L]
-RewriteRule ^items/([0-9]+)/?$ index.php?item_id=$1 [NC,L]
+RewriteRule ^?$ index.php [NC,L]

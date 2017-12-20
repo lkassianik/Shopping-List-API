@@ -6,35 +6,27 @@
   // $connection=mysqli_connect('localhost','root','','rest_api');
 
   $request_method=$_SERVER["REQUEST_METHOD"];
-  switch($request_method)
+  $api_method = idx($_REQUEST, 'api_method');
+
+  if ($request_method !== 'GET') {
+    die("This API call must be made with GET");
+  }
+
+  switch($api_method)
   {
-    case 'GET':
-      // Retrieve Products
-      if(!empty($_GET["item_id"])) {
-        $item_id = intval($_GET["item_id"]);
+    case 'get_items':
+      $item_id = idx($_REQUEST, 'item_id');
+      if(!empty($item_id)) {
         get_items($item_id);
       }
       else {
         get_items();
       }
       break;
-    case 'POST':
-      // Insert Product
-      insert_item();
-      break;
-    case 'PUT':
-      // Update Product
-      $item_id=intval($_GET["item_id"]);
-      update_item($item_id);
-      break;
-    case 'DELETE':
-      // Delete Product
-      $item_id=intval($_GET["item_id"]);
-      delete_item($item_id);
-      break;
     default:
       // Invalid Request Method
-      header("HTTP/1.0 405 Method Not Allowed");
+      echo "You must specify an API method with '?api_method=...'.";
+      die(500);
       break;
   }
 
