@@ -5,33 +5,33 @@
   // Commenting out for now to test URL rewrites
   // $connection=mysqli_connect('localhost','root','','rest_api');
 
-//   $request_method=$_SERVER["REQUEST_METHOD"];
-//   $api_method = idx($_REQUEST, 'api_method');
+  $request_method=$_SERVER["REQUEST_METHOD"];
+  $api_method = idx($_REQUEST, 'api_method');
 
-//   if ($request_method !== 'GET') {
-//     die("This API call must be made with GET");
-//   }
+  if ($request_method !== 'GET') {
+    die("This API call must be made with GET");
+  }
 
-//   switch($api_method)
-//   {
-//     case 'get-items':
-//       $item_id = idx($_REQUEST, 'item_id');
-//       if(!empty($item_id)) {
-//         get_items($item_id);
-//       }
-//       else {
-//         get_items();
-//       }
-//       break;
-//     default:
-//       // Invalid Request Method
-//       echo "You must specify an API method with '?api_method=...'.";
-//       die(500);
-//       break;
-//   }
+  switch($api_method)
+  {
+    case 'get-items':
+      $item_id = idx($_REQUEST, 'item_id');
+      if(!empty($item_id)) {
+        get_items($item_id);
+      }
+      else {
+        get_items();
+      }
+      break;
+    default:
+      // Invalid Request Method
+      echo "You must specify an API method with '?api_method=...'.";
+      die(500);
+      break;
+  }
 
 
-//   function get_items($item_id = 0) {
+  function get_items($item_id = 0) {
 
     echo '[
         {
