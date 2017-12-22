@@ -13,8 +13,6 @@
       die("This API call must be made with GET");
     }
 
-    echo $api_method;
-
     switch($api_method)
     {
       case 'get_items':
