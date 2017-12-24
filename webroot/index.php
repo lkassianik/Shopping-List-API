@@ -1,9 +1,13 @@
-<?php
+<?php include("shopping-list-config.php");
 
   // Connect to database
 
-  // Commenting out for now to test URL rewrites
-  // $connection=mysqli_connect('localhost','root','','rest_api');
+  $endpoint = ENDPOINT;
+  $user = USERNAME;
+  $password = PASSWORD;
+  $database = DATABASE;
+
+  $connection = mysqli_connect($endpoint, $user, $password, $database);
 
   function init() {
     $request_method=$_SERVER["REQUEST_METHOD"];
@@ -35,34 +39,32 @@
 
   function get_items($item_id = 0) {
 
-    echo '[
-        {
-          "name": "milk",
-          "itemDescription": "white water"
-        },
-        {
-          "name": "bread",
-          "itemDescription": "baked spongy plant mush"
-        }
-      ]';    
-}
-// /*
-//     global $connection;
-//     $query = "SELECT * FROM shopping_list_item";
+    // echo '[
+    //     {
+    //       "name": "milk",
+    //       "itemDescription": "white water"
+    //     },
+    //     {
+    //       "name": "bread",
+    //       "description": "baked spongy plant mush"
+    //     }
+    //   ]';    
 
-//     if($item_id != 0) {
-//       $query.=" WHERE id=".$item_id." LIMIT 1";
-//     }
+    global $connection;
 
-//     $response = array();
-//     $result = mysqli_query($connection, $query);
-//     while ($row = mysqli_fetch_array($result)) {
-//       $response[]=$row;
-//     }
-//     header('Content-Type: application/json');
-//     echo json_encode($response);
-// */
-//   }  
+    $query = "SELECT * FROM shopping_list_item";
+
+    if($item_id != 0) {
+      $query.=" WHERE id=".$item_id." LIMIT 1";
+    }
+
+    $response = array();
+    $result = mysqli_query($connection, $query);
+    while ($row = mysqli_fetch_array($result)) {
+      $response[]=$row;
+    }
+    echo json_encode($response);
+  }  
 
 /*
   function insert_item() {
