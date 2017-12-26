@@ -2,7 +2,7 @@ CREATE TABLE shopping_list_item (
   id MEDIUMINT NOT NULL AUTO_INCREMENT,
   name VARCHAR(255) NOT NULL,
   description VARCHAR(255),
-  inQueque TINYINT(1) NOT NULL DEFAULT 1,
+  inQueue TINYINT(1) NOT NULL DEFAULT 1,
   purchased TINYINT(1) NOT NULL DEFAULT 0,
   PRIMARY KEY (id));
 
@@ -23,3 +23,9 @@ CREATE TABLE shopping_list_item_category (
 INSERT INTO shopping_list_item (name, description) VALUES ('Oranges', 'Type of fruit');
 INSERT INTO shopping_list_item (name, description) VALUES ('Cucumber', 'A vegetable');
 
+UPDATE shopping_list_item 
+      SET name='tomato', 
+        description='asdf', 
+        purchased=1, 
+        inQueue=0
+        WHERE id=1;
