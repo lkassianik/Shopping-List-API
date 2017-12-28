@@ -29,3 +29,8 @@ UPDATE shopping_list_item
         purchased=1, 
         inQueue=0
         WHERE id=1;
+
+
+ALTER TABLE shopping_list_item MODIFY inQueue TINYINT(1) NOT NULL DEFAULT 1;
+
+UPDATE shopping_list_item SET inQueue=1 WHERE id=3;
