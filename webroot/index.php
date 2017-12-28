@@ -36,6 +36,9 @@
           echo "You must specify item id with '&item_id=123' to update item...";
         }
         break;
+      case 'insert_item':
+        insert_item();
+        break;        
       default:
         // Invalid Request Method
         echo "You must specify an API method with '?api_method=...'.";
@@ -62,29 +65,33 @@
     return json_encode($response);
   }  
 
+  // use URL:
+  // http://www.yourpath.com/?api_method=insert_item&item_name=newItem&item_description=newDescription
+  function insert_item() {
+    global $connection;
 
-  // function insert_item() {
-  //   global $connection;
-  //   $item_name = $_POST["item_name"];
-  //   $item_description = $_POST["item_description"];
-  //   $query="INSERT INTO shopping_list_item SET name='{$item_name}', description='{$item_description}'";
+    $item_name = $_REQUEST["item_name"];
+    $item_description = $_REQUEST["item_description"];
 
-  //   if(mysqli_query($connection, $query)) {
-  //     $response=array(
-  //       'status' => 1,
-  //       'status_message' =>'Item Added Successfully.'
-  //     );
-  //   }
-  //   else {
-  //     $response=array(
-  //       'status' => 0,
-  //       'status_message' =>'Item Addition Failed.'
-  //     );
-  //   }
+    $query="INSERT INTO shopping_list_item 
+      SET name='{$item_name}', 
+      description='{$item_description}'";
 
-  //   header('Content-Type: application/json');
-  //   echo json_encode($response);
-  // }
+    if(mysqli_query($connection, $query)) {
+      $response=array(
+        'status' => 1,
+        'status_message' =>'Item Added Successfully.'
+      );
+    }
+    else {
+      $response=array(
+        'status' => 0,
+        'status_message' =>'Item Addition Failed.'
+      );
+    }
+
+    echo json_encode($response);
+  }
 
 
   function update_item($item_id) {
