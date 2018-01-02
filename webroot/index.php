@@ -38,7 +38,15 @@
         break;
       case 'insert_item':
         insert_item();
-        break;        
+        break;  
+      case 'delete_item':
+        $item_id = $_REQUEST['item_id'];
+        if(!empty($item_id)) {
+          delete_item($item_id);
+        } else {
+          echo "You must specify item id with '&item_id=123' to delete item...";
+        }
+        break;
       default:
         // Invalid Request Method
         echo "You must specify an API method with '?api_method=...'.";
@@ -134,27 +142,27 @@
     echo json_encode($response);
   }
 
-  // function delete_item($item_id)
-  // {
-  //   global $connection;
-  //   $query="DELETE FROM shopping_list_item WHERE id=".$item_id;
+  function delete_item($item_id)
+  {
+    global $connection;
+    $query="DELETE FROM shopping_list_item WHERE id=".$item_id;
 
-  //   if(mysqli_query($connection, $query)) {
-  //     $response=array(
-  //       'status' => 1,
-  //       'status_message' =>'Product Deleted Successfully.'
-  //     );
-  //   }
-  //   else
-  //   {
-  //     $response=array(
-  //       'status' => 0,
-  //       'status_message' =>'Product Deletion Failed.'
-  //     );
-  //   }
-  //   header('Content-Type: application/json');
-  //   echo json_encode($response);
-  // }
+    if(mysqli_query($connection, $query)) {
+      $response=array(
+        'status' => 1,
+        'status_message' =>'Product Deleted Successfully.'
+      );
+    }
+    else
+    {
+      $response=array(
+        'status' => 0,
+        'status_message' =>'Product Deletion Failed.'
+      );
+    }
+
+    echo json_encode($response);
+  }
 
   
 
