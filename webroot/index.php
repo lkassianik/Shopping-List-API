@@ -124,7 +124,7 @@
         description='{$item_description}', 
         purchased={$item_purchased}, 
         inQueue={$item_in_queue} 
-        WHERE id={$item_id}";
+      WHERE id={$item_id}";
 
     if(mysqli_query($connection, $query)) {
       $response=array(
@@ -145,7 +145,9 @@
   function delete_item($item_id)
   {
     global $connection;
-    $query="DELETE FROM shopping_list_item WHERE id=".$item_id;
+    $query="UPDATE shopping_list_item 
+      SET inQueue=0
+      WHERE id=".$item_id;
 
     if(mysqli_query($connection, $query)) {
       $response=array(
