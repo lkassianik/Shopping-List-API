@@ -2,6 +2,7 @@
   include("shopping-list-config.php");
   include("shopping-list-item.php");
   include("shopping-list-category.php");
+  include("shopping-list-item-category.php");
 
   // Connect to database
 
@@ -70,6 +71,25 @@
           echo "You must specify item id with '&category_id=123' to delete item...";
         }
         break;                      
+      case 'categorize_item':
+        $item_id = $_REQUEST['item_id'];
+        $category_id = $_REQUEST['category_id'];
+
+        if(!empty($item_id) && !empty($category_id)) {
+          categorize_item($item_id, $category_id);
+        } else {
+          echo "You much specify item id and category id with '&item_id=123&category_id=123' to categorize item";
+        }
+        break;  
+      case 'get_item_category':
+        $item_id = $_REQUEST['item_id'];
+        if(!empty($item_id)) {
+          echo get_item_category($item_id);
+        }
+        else {
+          echo get_item_category();
+        }
+        break;                 
       default:
         // Invalid Request Method
         echo "You must specify an API method with '?api_method=...'.";
