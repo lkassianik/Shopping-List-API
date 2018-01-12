@@ -34,3 +34,5 @@ UPDATE shopping_list_item
 ALTER TABLE shopping_list_item MODIFY inQueue TINYINT(1) NOT NULL DEFAULT 1;
 
 UPDATE shopping_list_item SET inQueue=1 WHERE id=3;
+
+ALTER TABLE shopping_list_category ADD active TINYINT(1) NOT NULL DEFAULT 1;

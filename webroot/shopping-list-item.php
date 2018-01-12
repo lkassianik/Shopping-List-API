@@ -86,8 +86,7 @@
     echo json_encode($response);
   }
 
-  function delete_item($item_id)
-  {
+  function delete_item($item_id) {
     global $connection;
     $query="UPDATE shopping_list_item 
       SET inQueue=0
@@ -96,14 +95,14 @@
     if(mysqli_query($connection, $query)) {
       $response=array(
         'status' => 1,
-        'status_message' =>'Product Deleted Successfully.'
+        'status_message' =>'Item Deleted Successfully.'
       );
     }
     else
     {
       $response=array(
         'status' => 0,
-        'status_message' =>'Product Deletion Failed.'
+        'status_message' =>'Item Deletion Failed.'
       );
     }
 

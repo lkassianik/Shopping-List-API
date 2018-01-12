@@ -61,7 +61,15 @@
         break; 
       case 'insert_category':
         insert_category();
-        break;                
+        break;  
+      case 'delete_category':
+        $category_id = $_REQUEST['category_id'];
+        if(!empty($category_id)) {
+          delete_category($category_id);
+        } else {
+          echo "You must specify item id with '&category_id=123' to delete item...";
+        }
+        break;                      
       default:
         // Invalid Request Method
         echo "You must specify an API method with '?api_method=...'.";

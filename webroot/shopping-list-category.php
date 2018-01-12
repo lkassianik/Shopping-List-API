@@ -42,3 +42,26 @@
 
     echo json_encode($response);
   }  
+
+  function delete_category($item_id) {
+    global $connection;
+    $query="UPDATE shopping_list_category 
+      SET active=0
+      WHERE id=".$item_id;
+
+    if(mysqli_query($connection, $query)) {
+      $response=array(
+        'status' => 1,
+        'status_message' =>'Category Deleted Successfully.'
+      );
+    }
+    else
+    {
+      $response=array(
+        'status' => 0,
+        'status_message' =>'Category Deletion Failed.'
+      );
+    }
+
+    echo json_encode($response);
+  }
